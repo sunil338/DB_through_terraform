@@ -8,7 +8,7 @@ variable "location" {
   description = "Azure region"
   type        = string
   # Pick a nearby supported region; Central India/West Europe/East US all work.
-  default     = "Central India"
+  default     = "Japan East"
 }
 
 variable "resource_group_name" {
