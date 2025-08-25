@@ -6,10 +6,13 @@ resource "random_string" "suffix" {
 }
 
 # Resource Group
-resource "azurerm_resource_group" "rg" {
-  name     = var.resource_group_name
-  location = var.location
+resource "azurerm_postgresql_flexible_server" "pg" {
+  name                = "${var.prefix}-pg-${random_string.suffix.result}"
+  resource_group_name = var.resource_group_name
+  location            = var.location
+  ...
 }
+
 
 # PostgreSQL Flexible Server
 resource "azurerm_postgresql_flexible_server" "pg" {
