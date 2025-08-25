@@ -17,15 +17,11 @@ resource "azurerm_postgresql_flexible_server" "pg" {
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
 
-  sku_name   = var.sku_name           # e.g., Standard_B1ms (low-cost)
-  version    = "15"                   # Postgres major version
-  storage_mb = 32768                  # 32 GB
-  backup_retention_days   = 7
-  high_availability {
-  mode = "Disabled" # or "ZoneRedundant" / "SameZone"
-}
+  sku_name               = var.sku_name
+  version                = var.pg_version
+  storage_mb             = 32768
+  backup_retention_days  = 7
   public_network_access_enabled = true
-  # TLS required by Azure
 
   administrator_login    = var.pg_admin_username
   administrator_password = var.pg_admin_password
