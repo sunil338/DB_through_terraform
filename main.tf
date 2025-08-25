@@ -17,10 +17,10 @@ resource "azurerm_postgresql_flexible_server" "pg" {
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
 
-  sku_name               = var.sku_name
-  version                = "15"
-  storage_mb             = 32768
-  backup_retention_days  = 7
+  sku_name  = "B_Standard_B1ms"             # Correct SKU format for Flexible Server
+  version   = "15"                          # Postgres major version
+  storage_mb               = 32768          # 32 GB
+  backup_retention_days    = 7
   public_network_access_enabled = true
 
   administrator_login    = var.pg_admin_username
@@ -32,10 +32,10 @@ resource "azurerm_postgresql_flexible_server" "pg" {
 
 # Allow ONLY your public IP to connect
 resource "azurerm_postgresql_flexible_server_firewall_rule" "me" {
-  name      = "allow-my-ip"
-  server_id = azurerm_postgresql_flexible_server.pg.id
-  start_ip_address = var.client_ip
-  end_ip_address   = var.client_ip
+  name                = "allow-my-ip"
+  server_id           = azurerm_postgresql_flexible_server.pg.id
+  start_ip_address    = var.client_ip
+  end_ip_address      = var.client_ip
 }
 
 # Create an initial database
@@ -45,4 +45,3 @@ resource "azurerm_postgresql_flexible_server_database" "db" {
   charset   = "UTF8"
   collation = "en_US.utf8"
 }
-
