@@ -21,6 +21,7 @@ output "connection_string" {
     azurerm_postgresql_flexible_server.pg.fqdn,
     azurerm_postgresql_flexible_server_database.db.name
   )
+  sensitive = true
 }
 
 # Safer psql command (no password echoed if you edit it to read from env)
