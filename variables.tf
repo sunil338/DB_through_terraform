@@ -38,7 +38,7 @@ variable "database_name" {
 variable "sku_name" {
   description = "Compute SKU (cheap default)"
   type        = string
-  default     = "Standard_B1ms"
+  default     = "B_Standard_B1ms"
 }
 
 variable "client_ip" {
