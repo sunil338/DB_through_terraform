@@ -26,9 +26,9 @@ resource "azurerm_postgresql_flexible_server" "pg" {
 }
   public_network_access_enabled = true
   # TLS required by Azure
-  auth_config {
-    ssl_minimal_tls_version_enforced = "TLS1_2"
-  }
+  high_availability {
+  mode = "ZoneRedundant"
+}
   administrator_login    = var.pg_admin_username
   administrator_password = var.pg_admin_password
 
