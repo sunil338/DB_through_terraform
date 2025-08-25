@@ -18,7 +18,7 @@ resource "azurerm_postgresql_flexible_server" "pg" {
   location            = azurerm_resource_group.rg.location
 
   sku_name               = var.sku_name
-  version                = var.pg_version
+  version                = "15"
   storage_mb             = 32768
   backup_retention_days  = 7
   public_network_access_enabled = true
