@@ -21,11 +21,14 @@ resource "azurerm_postgresql_flexible_server" "pg" {
   version    = "15"                   # Postgres major version
   storage_mb = 32768                  # 32 GB
   backup_retention_days   = 7
-  high_availability_mode  = "Disabled"
+  high_availability {
+  mode = "Disabled" # or "ZoneRedundant" / "SameZone"
+}
   public_network_access_enabled = true
   # TLS required by Azure
-  ssl_minimal_tls_version_enforced = "TLS1_2"
-
+  auth_config {
+    ssl_minimal_tls_version_enforced = "TLS1_2"
+  }
   administrator_login    = var.pg_admin_username
   administrator_password = var.pg_admin_password
 
