@@ -27,7 +27,7 @@ output "connection_string" {
 # Safer psql command (no password echoed if you edit it to read from env)
 output "psql_command_example" {
   value = format(
-    "PGPASSWORD=<your-password> psql -h %s -U %s -d %s -p 5432",
+    "PGSSLMODE=require PGPASSWORD='<your-password>' psql -h %s -U %s -d %s -p 5432",
     azurerm_postgresql_flexible_server.pg.fqdn,
     var.pg_admin_username,
     azurerm_postgresql_flexible_server_database.db.name
